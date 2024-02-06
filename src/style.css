@@ -1,0 +1,80 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    border: 0px solid red;
+    padding: 0;
+    font-size: 18px;
+    font-weight: 900;
+    font-family: sans-serif;
+}
+#gameContainer{    
+    display: flex;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.board{
+    background-color: rgb(112, 174, 255);
+    border:1px solid black;
+    display: flex;
+    justify-content: center;
+    width: 500px;
+    height: 500px;
+    margin: 20px;
+}
+
+.boardRow{
+    height: 50px;
+    width: 500px;
+}
+
+.ship{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
+    border: 0px solid rgba(93, 109, 253, 0.711);
+    width: 50px;
+    height: 50px;
+}
+
+.emptyTile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(93, 109, 253, 0.711);
+    height: 50px;
+    width: 50px;
+}
+.hit{
+    background-color: rgba(255, 255, 255, 0.106);    
+}
+
+.ship.hit{
+    font-size: 25px;
+    color: rgb(160, 0, 0);
+    background-color: grey;
+    border:3px solid rgb(160,0,0);
+
+
+}
+
+h1{
+    text-align: center;
+    font-size: 3rem;
+    margin: 1rem;
+}
+
+#boardTitles{
+    width: 770px;
+    display: flex;
+    justify-content: space-between;
+}
+
+h2{
+    font-size: 1.5rem;
+}
