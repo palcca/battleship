@@ -30,7 +30,11 @@ class Game {
 let game;
 
 const newGameBtn = document.querySelector("#newGameBtn");
+const gameContainer = document.querySelector("#gameContainer")
 newGameBtn.addEventListener("click", () => {
+while(gameContainer.firstChild){
+    gameContainer.removeChild(gameContainer.lastChild)
+}
   game = new Game("Player");
   game.drawGame();
   document.querySelector(".turnResult").classList.remove("win");
