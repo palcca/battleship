@@ -25,9 +25,12 @@ class Game {
     }
     drawPlayerBoard(this);
     drawEnemyBoard(this);
-
   }
 }
-let game = new Game("Jóska");
+let game;
 
-game.drawGame();
+const newGameBtn = document.querySelector("#newGameBtn");
+newGameBtn.addEventListener("click", () => {
+  game = new Game("Player");
+  game.drawGame();
+});

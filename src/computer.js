@@ -2,18 +2,37 @@ import { randomNumber } from "./randomNumber";
 import { drawPlayerBoard, drawEnemyBoard } from "./DOMs";
 import Ship from "./ship";
 export default class Computer {
-  constructor() {}
+  constructor() {
+    this.stepQueue = [];
+  }
   turn(Game) {
-    let x = randomNumber(10);
-    let y = randomNumber(10);
+    let x=5;
+    let y=5;
     while (
       Game.enemyBoard.receivedAttacks.join(" ").includes([x, y]) &&
       Game.enemyBoard.receivedAttacks.length < 100
     ) {
-      x = randomNumber(10);
-      y = randomNumber(10);
+      if (this.stepQueue.length !== 0) {
+        x = this.stepQueue[0][0];
+        y = this.stepQueue[0][1];
+        this.stepQueue.shift();
+      } else {
+        x = randomNumber(10);
+        y = randomNumber(10);
+      }
     }
     Game.enemyBoard.receiveAttack(x, y);
+    if (Game.enemyBoard.table[x][y] instanceof Ship) {
+      if (!Game.enemyBoard.table[x][y].isSunk()) {
+        if (x !== 0 && y !== 0 && x !== 9 && y !== 9) {
+          this.stepQueue.unshift([x + 1, y]);
+          this.stepQueue.unshift([x - 1, y]);
+          this.stepQueue.unshift([x, y + 1]);
+          this.stepQueue.unshift([x, y - 1]);
+        }
+      }
+    }
+    console.log(this.stepQueue);
   }
   getFleetPlacement() {
     let fleetPlacement = [[], [], [], [], []];
