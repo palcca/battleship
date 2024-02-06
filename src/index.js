@@ -33,4 +33,6 @@ const newGameBtn = document.querySelector("#newGameBtn");
 newGameBtn.addEventListener("click", () => {
   game = new Game("Player");
   game.drawGame();
+  document.querySelector(".turnResult").classList.remove("win");
+  document.querySelector(".turnResult").textContent = "";
 });

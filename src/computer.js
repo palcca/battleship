@@ -6,33 +6,60 @@ export default class Computer {
     this.stepQueue = [];
   }
   turn(Game) {
-    let x=5;
-    let y=5;
+    let x = 5;
+    let y = 5;
+
     while (
       Game.enemyBoard.receivedAttacks.join(" ").includes([x, y]) &&
       Game.enemyBoard.receivedAttacks.length < 100
     ) {
       if (this.stepQueue.length !== 0) {
-        x = this.stepQueue[0][0];
-        y = this.stepQueue[0][1];
-        this.stepQueue.shift();
+        if (this.stepQueue[0][0].length !== 0) {
+          x = this.stepQueue[0][0][0];
+          y = this.stepQueue[0][0][1];
+          this.stepQueue[0].shift();
+          if (this.stepQueue[0].length === 0) {
+            this.stepQueue.shift();
+          }
+          if (
+            Game.enemyBoard.table[x][y] instanceof Ship &&
+            Game.enemyBoard.table[x][y].isSunk()
+          ) {
+            this.stepQueue.shift();
+          }
+        }
       } else {
         x = randomNumber(10);
         y = randomNumber(10);
       }
     }
+    //console.log(this.stepQueue)
     Game.enemyBoard.receiveAttack(x, y);
     if (Game.enemyBoard.table[x][y] instanceof Ship) {
       if (!Game.enemyBoard.table[x][y].isSunk()) {
-        if (x !== 0 && y !== 0 && x !== 9 && y !== 9) {
-          this.stepQueue.unshift([x + 1, y]);
-          this.stepQueue.unshift([x - 1, y]);
-          this.stepQueue.unshift([x, y + 1]);
-          this.stepQueue.unshift([x, y - 1]);
+        let steps=[
+          [x + 1, y],
+          [x - 1, y],
+          [x, y + 1],
+          [x, y - 1],
+        ]
+        if (x == 0) {
+          steps.splice(1,1);        
         }
+        if (x == 9) {
+          steps.splice(0,1);        
+        }
+        if (y == 0) {
+          steps.splice(2,1);        
+        }
+        if (y == 9) {
+          steps.splice(3,1);        
+        }
+        this.stepQueue.push(steps);
+
+
       }
     }
-    console.log(this.stepQueue);
   }
   getFleetPlacement() {
     let fleetPlacement = [[], [], [], [], []];
