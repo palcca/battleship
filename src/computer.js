@@ -55,7 +55,7 @@ export default class Computer {
         if (y == 9) {
           steps.splice(3,1);        
         }
-        this.stepQueue.push(steps);
+        this.stepQueue.unshift(steps);
 
 
       }
