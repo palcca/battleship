@@ -33,7 +33,6 @@ export default class Computer {
         y = randomNumber(10);
       }
     }
-    //console.log(this.stepQueue)
     Game.enemyBoard.receiveAttack(x, y);
     if (Game.enemyBoard.table[x][y] instanceof Ship) {
       if (!Game.enemyBoard.table[x][y].isSunk()) {
