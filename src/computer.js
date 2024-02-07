@@ -5,17 +5,15 @@ export default class Computer {
   constructor() {
     this.stepQueue = [];
     this.lastHit = [];
-    this.table = [[],[],[],[],[],[],[],[],[],[]];
-    for(let  i = 0; i<10; i++){
-      for(let y=0; y<10;y++){
-        this.table[i][y]=" ";
+    this.table = [[], [], [], [], [], [], [], [], [], []];
+    for (let i = 0; i < 10; i++) {
+      for (let y = 0; y < 10; y++) {
+        this.table[i][y] = " ";
       }
     }
-    this.table[0][0]="X";
-    this.table[0][1]="x2"
-
   }
   turn(Game) {
+    
     let result;
     let x = 5;
     let y = 5;
@@ -74,6 +72,11 @@ export default class Computer {
           steps.splice(1, 1);
           steps.splice(2, 1);
         } else {
+          if(x==0 && y ==0){
+            steps.splice(2,2)
+          }else if(x==9&&y==9){
+            steps.splice(0,2);
+          } else {
           if (x === 0) {
             steps.splice(2, 1);
           }
@@ -84,8 +87,8 @@ export default class Computer {
             steps.splice(3, 1);
           }
           if (y === 9) {
-            steps.splice(1, 1);
-          }
+            steps.splice(1, 1);          
+          }}
         }
         this.stepQueue.unshift(steps);
         if (
@@ -129,6 +132,7 @@ export default class Computer {
       Game.enemyBoard.table[x][y].isSunk()
     ) {
       let ship = Game.enemyBoard.table[x][y];
+      let size = Number(ship.size);
       let shipPlace = [];
       for (let a = 0; a < 10; a++) {
         for (let b = 0; b < 10; b++) {
@@ -140,10 +144,10 @@ export default class Computer {
           }
         }
       }
-      let size = ship.size;
+
       let maxc;
       let maxi;
-      if (shipPlace[0][0] === shipPlace[ship.size-1][0]) {
+      if (shipPlace[0][0] === shipPlace[ship.size - 1][0]) {
         maxc = size;
         maxi = 1;
       } else {
@@ -169,6 +173,7 @@ export default class Computer {
       }
     }
   }
+
   getFleetPlacement() {
     let fleetPlacement = [[], [], [], [], []];
     //size, pos_x, pos_y, direction
@@ -249,6 +254,11 @@ export default class Computer {
     fleetPlacement[2] = getRandomPlace(3);
     fleetPlacement[3] = getRandomPlace(3);
     fleetPlacement[4] = getRandomPlace(2);
+    fleetPlacement[5] = getRandomPlace(1);
+    fleetPlacement[6] = getRandomPlace(1);
+    fleetPlacement[7] = getRandomPlace(1);
+    fleetPlacement[8] = getRandomPlace(2);
+
 
     return fleetPlacement;
   }
