@@ -252,12 +252,10 @@ export default class Computer {
     fleetPlacement[0] = getRandomPlace(5);
     fleetPlacement[1] = getRandomPlace(4);
     fleetPlacement[2] = getRandomPlace(3);
-    fleetPlacement[3] = getRandomPlace(3);
-    fleetPlacement[4] = getRandomPlace(2);
+    fleetPlacement[3] = getRandomPlace(2);
+    fleetPlacement[4] = getRandomPlace(1);
     fleetPlacement[5] = getRandomPlace(1);
-    fleetPlacement[6] = getRandomPlace(1);
-    fleetPlacement[7] = getRandomPlace(1);
-    fleetPlacement[8] = getRandomPlace(2);
+
 
 
     return fleetPlacement;
