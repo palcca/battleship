@@ -18,7 +18,7 @@ class Game {
 
   drawGame() {
     let comFleet = this.computer.getFleetPlacement();
-    let playerFleet = this.player.getFleetPlacement();
+    let playerFleet = this.computer.getFleetPlacement();
     for (let i = 0; i < 5; i++) {
       this.playerBoard.placeShip(comFleet[i]);
       this.enemyBoard.placeShip(playerFleet[i]);
